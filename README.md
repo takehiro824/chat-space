@@ -36,6 +36,11 @@ Things you may want to cover:
 
 ## membersテーブル
 
+|Column|Type|Options|
+|------|----|-------|
+|user_id|intger|null: false|
+|group_id|intger|null: false|
+
 ### Association
 - belongs_to :group
 - belongs_to :user
@@ -46,6 +51,8 @@ Things you may want to cover:
 |------|----|-------|
 |image|string|
 |body|text|
+|user_id|intger|null: false|
+|group_id|intger|null: false|
 
 ### Association
 - belongs_to :group
