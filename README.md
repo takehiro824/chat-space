@@ -55,7 +55,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|
+|name|string|
 
 ### Association
 - has_many :messages
