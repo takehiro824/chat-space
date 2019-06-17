@@ -38,8 +38,8 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|intger|null: false|
-|group_id|intger|null: false|
+|user_id|intger|null: false, foreign_key: true|
+|group_id|intger|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
@@ -51,8 +51,8 @@ Things you may want to cover:
 |------|----|-------|
 |image|string|
 |body|text|
-|user_id|intger|null: false|
-|group_id|intger|null: false|
+|user_id|intger|null: false, foreign_key: true|
+|group_id|intger|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
