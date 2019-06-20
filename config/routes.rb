@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root to: "message#index"
+  root to: "messages#index"
 end
