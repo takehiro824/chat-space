@@ -1,12 +1,11 @@
-.flashbox
 .wrappeer
   .chat-side
     .side-header
       %p.side-header__user-name
-        sample
+        = current_user.name
       %ul.user_menu
         %li.user-menu__edit-user
-          =link_to "users/current_user.id/edit"  do
+          =link_to edit_user_path(current_user) do
             = fa_icon 'edit', class: "user_menu--icon"
         %li.user-menu__new-group
           =link_to "https://chat-space-proto.herokuapp.com/groups/new"  do

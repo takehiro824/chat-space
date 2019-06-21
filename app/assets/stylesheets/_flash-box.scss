@@ -1,7 +1,18 @@
-.flash-box {
+.flashbox {
+  .notice{
   color: white;
   font-size: 1rem;
   font-weight: lighter;
   text-align: center;
   width: 100vw;
+  background-color: #38aef0;
+  }
+  .alert{
+  color: white;
+  font-size: 1rem;
+  font-weight: lighter;
+  text-align: center;
+  width: 100vw;
+  background-color: #F35500;
+  }
 }
