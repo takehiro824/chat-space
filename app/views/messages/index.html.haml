@@ -1,40 +1,27 @@
 .wrappeer
-  .chat-side
-    .side-header
-      %p.side-header__user-name
-        = current_user.name
-      %ul.user_menu
-        %li.user-menu__edit-user
-          =link_to edit_user_path(current_user) do
-            = fa_icon 'edit', class: "user_menu--icon"
-        %li.user-menu__new-group
-          =link_to new_group_path  do
-            = fa_icon 'cog', class: "user_menu--icon"
-    .groups
-      .group
-       
 
-
+  = render 'shared/chat_side'
+  
   .chat-main
     .main-header
       .current-group
         %h2.current-group__name
+          = @group.name
         %ul.member-list
           Member:
           %li.member-list__member
       = link_to "users/current_user.id/edit" do
         .main-header__edit-btn
           Edit
+
     .messages
- 
-          
+      = render partial: 'shared/message', collection: @messages
+
     .form
-      %form#new_message.new-message{"accept-charset" => "UTF-8", :action => "", :enctype => "multipart/form-data", :method => "post"}
-        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-        %input{:name => "authenticity_token", :type => "hidden", :value => "q7/zvfR3oHRkr/1oStrXhRS4Mc5RL4wUEdmN6ba8dH5SUJ/8EBiYziknoKSDgf83ExbJsiEFHUzCV4/BUz5JyA=="}
+      = form_for [@group, @message] do |f|
         .input-box
-          %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}
-          %label.image-label{:for => "message_image"}
-            %i.fa.fa-image
-          %input#message_image.image-label__input{:name => "message[image]", :type => "file"}/
-        %input.new-message__submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}
+          = f.text_field :body, class: 'input-box__text"', placeholder: 'type a message'
+          = f.label :image, class: 'image-label' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'new-message__submit-btn'

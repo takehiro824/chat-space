@@ -1,5 +1,27 @@
-.wrapper
+.wrappeer
 
   = render 'shared/chat_side'
   
-         
+  .chat-main
+    .main-header
+      .current-group
+        %h2.current-group__name
+          = @group.name
+        %ul.member-list
+          Member:
+          %li.member-list__member
+      = link_to "users/current_user.id/edit" do
+        .main-header__edit-btn
+          Edit
+
+    .messages
+      = render partial: 'shared/message', collection: @messages
+
+    .form
+      = form_for [@group, @message] do |f|
+        .input-box
+          = f.text_field :body, class: 'input-box__text"', placeholder: 'type a message'
+          = f.label :image, class: 'image-label' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'new-message__submit-btn'
