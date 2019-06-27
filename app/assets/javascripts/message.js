@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $(function() {      
         function buildHTML(message) {
-        var content = message.content ? `${ message.content }` : "";
+        var body = message.body ? `${ message.body }` : "";
         var img = message.image ? `<img src= ${ message.image }>` : "";
         var html =  `<div class="pan">
                       <div class="upper-message">
@@ -23,6 +23,7 @@ $(document).on('turbolinks:load', function() {
                     </div>`
       return html;
     }
+
     
     $('#new_message').on('submit', function(e) {
       e.preventDefault();
@@ -34,7 +35,7 @@ $(document).on('turbolinks:load', function() {
         data: formData,
         dataType: 'json',
         processData: false,
-        contentType: false
+        contentType: false,
       })
       .done(function(data) {
         var html = buildHTML(data);
