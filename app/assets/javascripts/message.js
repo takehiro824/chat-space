@@ -23,14 +23,11 @@ $(document).on('turbolinks:load', function() {
                     </div>`
       return html;
     }
-
-    
     $('#new_message').on('submit', function(e) {
       e.preventDefault();
       var formData = new FormData(this);
       var href = window.location.href 
-      
-
+    
       $.ajax({
         type: 'POST',
         url: href,
@@ -45,13 +42,10 @@ $(document).on('turbolinks:load', function() {
         $('#new_message.new_message')[0].reset();
         $(".new-message__submit-btn").attr('disabled', false);
         $(".messages").animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
-        
-      })
-      
+      })  
       .fail(function() {
         alert('エラーが発生したためメッセージは送信できませんでした。');
       })
-  
     })
   });
 });
