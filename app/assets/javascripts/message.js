@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function() {
                       </div>
                       <div class="lower-message">
                         <p class="lower-message__body">
-                          ${message.body}
+                          ${body}
                         </p>
                         <p>
                           ${img}
@@ -29,6 +29,8 @@ $(document).on('turbolinks:load', function() {
       e.preventDefault();
       var formData = new FormData(this);
       var href = window.location.href 
+      
+
       $.ajax({
         type: 'POST',
         url: href,
@@ -43,11 +45,13 @@ $(document).on('turbolinks:load', function() {
         $('.input-box__text').val('');
         $(".new-message__submit-btn").attr('disabled', false);
         $(".messages").animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
+        
       })
       
       .fail(function() {
         alert('エラーが発生したためメッセージは送信できませんでした。');
       })
+  
     })
   });
 });
