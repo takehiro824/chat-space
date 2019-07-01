@@ -2,8 +2,8 @@ $(document).on('turbolinks:load', function() {
   $(function() {      
         function buildHTML(message) {
         var body = message.body ? `${ message.body }` : "";
-        var img = message.image ? `<img src= ${ message.image }>` : "";
-        var html =  `<div class="pan">
+        var image = message.image ? `<img src= ${ message.image }>` : "";
+        var html =  `<div class="pan" data-message-id="${message.id}"> 
                       <div class="upper-message">
                         <div class="upper-message__user-name">
                           ${message.user_name}
@@ -15,13 +15,12 @@ $(document).on('turbolinks:load', function() {
                       <div class="lower-message">
                         <p class="lower-message__body">
                           ${body}
-                        </p>
-                        <p>
-                          ${img}
-                        </p>
+                        </p>  
+                          ${image}
                       </div>
                     </div>`
-      return html;
+              return html;
+      
     }
     $('#new_message').on('submit', function(e) {
       e.preventDefault();
@@ -48,4 +47,56 @@ $(document).on('turbolinks:load', function() {
       })
     })
   });
+  
+$(function() {
+  function buildMessageHTML(message) {
+    var body = message.body ? `${ message.body }` : "";
+    var image = message.image ? `<img src=${message.image} >` : ""; 
+
+    var html = `<div class="pan" data-message-id="${message.id}"> 
+                  <div class="upper-message">
+                    <div class="upper-message__user-name">
+                      ${message.user_name}
+                  </div>
+                    <div class="upper-message__date">
+                      ${message.date}
+                    </div>
+                  </div>
+                  <div class="lower-meesage">
+                    <p class="lower-message__body">
+                      ${body}
+                    </p>
+                      ${image}
+                  </div>
+                </div>`
+  return html;
+}
+  var reloadMessages = function() {
+    if(window.location.href.match(/\/groups\/\d+\/messages/)){
+    var last_message_id = $('.pan:last').data("message-id");
+        
+  $.ajax({
+    url: "api/messages",
+    type: 'get',
+    dataType: 'json',
+    data: {id: last_message_id},
+    
+  })
+  .done(function(messages) {
+    var insertHTML = '';
+    messages.forEach(function (message){
+      insertHTML = buildMessageHTML(message);
+      $(".messages").append(insertHTML);
+    })
+        
+  $(".messages").animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
+    })    
+    .fail(function() {
+    console.log('error');
+    });
+    }
+  };
+  setInterval(reloadMessages, 5000); 
+  });
 });
+
