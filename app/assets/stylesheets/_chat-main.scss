@@ -15,6 +15,9 @@
         display: flex;
         margin-top: 15px;
         color: #999999;
+        li.member-list__member {
+          margin-left: 0.3rem;
+        }
       }
     }
     &__edit-btn {
