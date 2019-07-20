@@ -26,7 +26,6 @@ $(document).on('turbolinks:load', function() {
       e.preventDefault();
       var formData = new FormData(this);
       var href = window.location.href 
-    
       $.ajax({
         type: 'POST',
         url: href,
